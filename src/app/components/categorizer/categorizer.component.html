@@ -1,9 +1,16 @@
-<input type="file" (change)="importDatabase($event)" multiple="false" />
+<header class="mb-4 pt-2 pb-2 ps-2">
+	<h2>Categorizador de Productos</h2>
+</header>
 
-<div class="mt-4" *ngIf="showErrorMessage">El archivo seleccionado no es un archivo de Excel válido.</div>
+<div class="container main-content">
 
-  <div class="table-responsive" *ngFor="let categoryData of categoryDataList">
-    <h5>{{ categoryData.category }}</h5>
+	<label for="fileUpload" class="custom-file-label">Seleccionar archivo</label>
+  <input id="fileUpload" type="file" class="custom-file-input" (change)="importDatabase($event)" multiple="false"/>
+
+	<div class="mt-4" *ngIf="showErrorMessage">El archivo seleccionado no es un archivo de Excel válido.</div>
+
+  <div class="mt-4 table-responsive" *ngFor="let categoryData of categoryDataList">
+    <h5 class="mb-4">{{ categoryData.category }}</h5>
     <table class="table" (drop)="handleDrop($event, categoryData.category)" (dragover)="$event.preventDefault()">
       <thead>
         <tr>
@@ -21,4 +28,9 @@
     </table>
   </div>
 
-	<button *ngIf="categoryDataList && !showErrorMessage" (click)="exportToExcel()">Exportar a Excel</button>
+	<button class="mt-3 mb-3 btn btn-primary custom-button" *ngIf="categoryDataList && !showErrorMessage" (click)="exportToExcel()">Exportar a Excel</button>
+</div>
+
+<footer class="text-center pt-2 pb-2 ps-2"> 
+  <span>&copy; 2023 Todos los derechos reservados.</span>
+</footer>

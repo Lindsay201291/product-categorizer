@@ -1,0 +1,29 @@
+header, footer {
+	background-color: #09ab3f;
+	color: #ffffff;
+}
+
+.custom-button, .custom-file-label {
+	background-color: #099437;
+	color: #ffffff;
+	border: none;
+	border-radius: 8px;
+	font-weight: bold;
+}
+
+.custom-file-input {
+	display: none;
+}
+
+.custom-file-label {
+	padding: 8px 12px;
+	cursor: pointer;
+}
+
+.main-content {
+	min-height: 82vh;
+}
+
+footer {
+	margin-top: auto;
+}
