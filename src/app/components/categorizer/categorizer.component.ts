@@ -125,4 +125,37 @@ export class CategorizerComponent {
       this.draggedRow = null; // Restablecer la fila arrastrada a null después de agregarla
     }
   }
+
+  exportToExcel(): void {
+    // Crear un nuevo libro de Excel
+    const workbook = XLSX.utils.book_new();
+
+    // Iterar por cada categoría y crear una hoja de Excel para cada una
+    this.categoryDataList.forEach((categoryData: { data: any; }, index: number) => {
+      
+      // Convertir los datos de la categoría en una matriz de celdas
+      const worksheetData = [this.firstData.data[0], ...categoryData.data];
+
+      // Convertir la matriz de celdas en una hoja de Excel
+      const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+
+      // Establecer el nombre de la hoja según la categoría
+      const sheetName = `Categoría ${index + 1}`;
+      XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+    });
+
+    // Generar el archivo de Excel
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Crear el objeto Blob para guardar el archivo
+    const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    // Descargar el archivo
+    const fileName = 'data.xlsx';
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    link.click();
+  }
 }

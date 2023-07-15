@@ -20,3 +20,5 @@
       </tbody>
     </table>
   </div>
+
+	<button *ngIf="categoryDataList && !showErrorMessage" (click)="exportToExcel()">Exportar a Excel</button>
