@@ -11,8 +11,12 @@ export class CategorizerComponent {
   categoryDataList: any;
   firstData: any;
   modifiedFirstData: any;
+  showErrorMessage: boolean = false;
 
   importDatabase(event: Event): void {
+    this.showErrorMessage = false;
+    this.categoryDataList = [];
+    
     // Tomar el evento desencadenado, identificar el elemento HTML de entrada (input)
     // asociado y asignarlo a inputElement
     const inputElement = event.target as HTMLInputElement;
@@ -27,6 +31,13 @@ export class CategorizerComponent {
       // Crear una nueva instancia del objeto FileReader, el cual permite leer el contenido 
       // de los archivos seleccionados por el usuario
       const fileReader = new FileReader();
+
+      // Validar el tipo de archivo antes de procesarlo
+      if (file.type !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+        console.log('Error: El archivo seleccionado no es un archivo de Excel válido.');
+        this.showErrorMessage = true;
+        return;
+      }
 
       // Establecer un controlador de evento para el evento onload del objeto FileReader,
       // este evento se activa cuando se ha completado la carga del archivo

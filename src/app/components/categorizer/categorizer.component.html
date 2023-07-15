@@ -1,5 +1,7 @@
 <input type="file" (change)="importDatabase($event)" multiple="false" />
 
+<div class="mt-4" *ngIf="showErrorMessage">El archivo seleccionado no es un archivo de Excel válido.</div>
+
   <div class="table-responsive" *ngFor="let categoryData of categoryDataList">
     <h5>{{ categoryData.category }}</h5>
     <table class="table">
