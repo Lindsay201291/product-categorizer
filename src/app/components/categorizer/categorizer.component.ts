@@ -131,7 +131,8 @@ export class CategorizerComponent {
     const workbook = XLSX.utils.book_new();
 
     // Iterar por cada categoría y crear una hoja de Excel para cada una
-    this.categoryDataList.forEach((categoryData: { data: any; }, index: number) => {
+    this.categoryDataList.forEach((categoryData: {
+      category: any; data: any;}) => {
 
       // Eliminar la tercera columna de los datos de la categoría
       const modifiedCategoryData = categoryData.data.map((row: any[]) => {
@@ -145,7 +146,7 @@ export class CategorizerComponent {
       const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
 
       // Establecer el nombre de la hoja según la categoría
-      const sheetName = `Categoría ${index + 1}`;
+      const sheetName = categoryData.category.toString();
       XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
     });
 
@@ -156,7 +157,7 @@ export class CategorizerComponent {
     const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
     // Descargar el archivo
-    const fileName = 'data.xlsx';
+    const fileName = 'Productos-categorizados.xlsx';
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
