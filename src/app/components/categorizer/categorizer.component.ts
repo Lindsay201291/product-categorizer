@@ -10,6 +10,7 @@ export class CategorizerComponent {
 
   categoryDataList: any;
   firstData: any;
+  modifiedFirstData: any;
 
   importDatabase(event: Event): void {
     // Tomar el evento desencadenado, identificar el elemento HTML de entrada (input)
@@ -85,6 +86,9 @@ export class CategorizerComponent {
     if (this.categoryDataList.length > 0) {
       // Eliminar el primer elemento del array categoryDataList para asignárselo a firstData
       this.firstData = this.categoryDataList.shift();
+      
+      this.modifiedFirstData = [...this.firstData.data[0]];
+      this.modifiedFirstData.splice(2,1);
     }
   }
 }
