@@ -12,6 +12,7 @@ export class CategorizerComponent {
   firstData: any;
   modifiedFirstData: any;
   showErrorMessage: boolean = false;
+  draggedRow: any;
 
   importDatabase(event: Event): void {
     this.showErrorMessage = false;
@@ -100,6 +101,23 @@ export class CategorizerComponent {
       
       this.modifiedFirstData = [...this.firstData.data[0]];
       this.modifiedFirstData.splice(2,1);
+    }
+  }
+
+  // Guardar la información de la fila o elemento que se está arrastrando en la
+  // propiedad draggedRow
+  handleDragStart(row: any): void {
+    this.draggedRow = row;
+  }
+
+  handleDrop(event: DragEvent, targetCategory: string): void {
+    event.preventDefault();
+
+    // Encontrar la categoría de destino y agregar la fila arrastrada
+    const targetCategoryData = this.categoryDataList.find((categoryData: { category: string; }) => categoryData.category === targetCategory);
+    if (targetCategoryData && this.draggedRow) {
+      targetCategoryData.data.push(this.draggedRow);
+      this.draggedRow = null; // Restablecer la fila arrastrada a null después de agregarla
     }
   }
 }

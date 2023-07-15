@@ -4,14 +4,14 @@
 
   <div class="table-responsive" *ngFor="let categoryData of categoryDataList">
     <h5>{{ categoryData.category }}</h5>
-    <table class="table">
+    <table class="table" (drop)="handleDrop($event, categoryData.category)" (dragover)="$event.preventDefault()">
       <thead>
         <tr>
           <th *ngFor="let header of modifiedFirstData">{{ header }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of categoryData.data">
+        <tr *ngFor="let row of categoryData.data" draggable="true" (dragstart)="handleDragStart(row)">
             <td>{{ row[0] }}</td>
             <td>{{ row[1] }}</td>
             <td>{{ row[3] }}</td>
