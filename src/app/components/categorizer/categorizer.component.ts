@@ -132,9 +132,14 @@ export class CategorizerComponent {
 
     // Iterar por cada categoría y crear una hoja de Excel para cada una
     this.categoryDataList.forEach((categoryData: { data: any; }, index: number) => {
+
+      // Eliminar la tercera columna de los datos de la categoría
+      const modifiedCategoryData = categoryData.data.map((row: any[]) => {
+        return row.filter((_, columnIndex) => columnIndex !== 2);
+      });
       
       // Convertir los datos de la categoría en una matriz de celdas
-      const worksheetData = [this.firstData.data[0], ...categoryData.data];
+      const worksheetData = [this.modifiedFirstData, ...modifiedCategoryData];
 
       // Convertir la matriz de celdas en una hoja de Excel
       const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
