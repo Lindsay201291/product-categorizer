@@ -1,27 +1,39 @@
-# ProductCategorizer
+# Categorizador de Productos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 16.0.2.
 
-## Development server
+## Requerimientos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Descargue e instale [Node.js](https://nodejs.org/es/download).
 
-## Code scaffolding
+Una vez descargado e instalado Node.js, ejecute el comando `npm i -g @angular/cli` en la terminal.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Después que haya descargado el repositorio, diríjase a la carpeta del proyecto y ejecute el comando `npm install` para descargar los paquetes necesarios.
 
-## Build
+## Servidor de desarrollo
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ejecute `ng serve` para un servidor de desarrollo. Navegue a `http://localhost:4200/`. La aplicación se recargará automáticamente si cambia cualquiera de los archivos de origen.
 
-## Running unit tests
+## Andamiaje de código
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Ejecute `ng generate component component-name` para generar un nuevo componente. También puede usar `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Running end-to-end tests
+## Construir
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Ejecute `ng build` para construir el proyecto. Los artefactos de construcción se almacenarán en el directorio `dist/`.
 
-## Further help
+## Más ayuda
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Para obtener más ayuda sobre Angular CLI, use `ng help` o consulte la página [Descripción general y referencia de comandos de Angular CLI](https://angular.io/cli).
+
+## Funcionalidades de la aplicación
+
+La aplicación web desarrollada incluye las siguientes funcionalidades:
+
+1. Importación de datos: Importa una base de datos Excel.
+
+2. Segmentación de datos: Segmenta los datos importados en listas por categoría.
+
+3. Implementación de interactividad: Implementa un sistema de drag and drop entre los elementos que conforman cada categoría. Al mover un equipo entre categorías, su categoría cambia correspondientemente en los datos.
+
+4. Generación de archivo Excel: Funcionalidad que permite descargar un archivo Excel con los datos de los equipos modificados.
