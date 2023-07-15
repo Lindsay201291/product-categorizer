@@ -106,8 +106,11 @@ export class CategorizerComponent {
 
   // Guardar la información de la fila o elemento que se está arrastrando en la
   // propiedad draggedRow
-  handleDragStart(row: any): void {
-    this.draggedRow = row;
+  handleDragStart(row: any, categoryData: any): void {
+    this.draggedRow = {
+      row: row,
+      categoryData: categoryData
+    };
   }
 
   handleDrop(event: DragEvent, targetCategory: string): void {
@@ -116,7 +119,9 @@ export class CategorizerComponent {
     // Encontrar la categoría de destino y agregar la fila arrastrada
     const targetCategoryData = this.categoryDataList.find((categoryData: { category: string; }) => categoryData.category === targetCategory);
     if (targetCategoryData && this.draggedRow) {
-      targetCategoryData.data.push(this.draggedRow);
+      targetCategoryData.data.push(this.draggedRow.row);
+      const sourceCategoryData = this.draggedRow.categoryData;
+      sourceCategoryData.data.splice(sourceCategoryData.data.indexOf(this.draggedRow.row), 1);
       this.draggedRow = null; // Restablecer la fila arrastrada a null después de agregarla
     }
   }

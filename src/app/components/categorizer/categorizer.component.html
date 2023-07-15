@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of categoryData.data" draggable="true" (dragstart)="handleDragStart(row)">
+        <tr *ngFor="let row of categoryData.data" draggable="true" (dragstart)="handleDragStart(row, categoryData)">
             <td>{{ row[0] }}</td>
             <td>{{ row[1] }}</td>
             <td>{{ row[3] }}</td>
